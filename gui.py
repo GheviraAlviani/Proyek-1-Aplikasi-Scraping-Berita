@@ -528,7 +528,7 @@ class NewsScraperApp(QMainWindow):
 
         judul       = data.get("judul", "-")
         tanggal     = tanggal_str or "-"
-        link        = data.get("link", "-")
+        link        = data.get("url", "-")
         isi         = data.get("isi", "")
         isi_singkat = isi[:120] + ("..." if len(isi) > 120 else "")
 
