@@ -15,6 +15,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QDate, QThread, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QFont, QColor
+from datetime import datetime
 
 
 # =============================================================
@@ -501,13 +502,41 @@ class NewsScraperApp(QMainWindow):
 
     @pyqtSlot(dict)
     def _on_article_found(self, data: dict):
+        # Ambil tanggal artikel sebagai string
+        tanggal_str = data.get("tanggal", None)
+
+        # ==============================
+        # FILTER TANGGAL
+        # ==============================
+        if tanggal_str and self.date_filter_chk.isChecked():
+            try:
+                # Konversi teks tanggal menjadi datetime.date
+                # Asumsi format 'YYYY-MM-DD'
+                article_date = datetime.strptime(tanggal_str, "%Y-%m-%d").date()
+            except ValueError:
+                # Format tanggal tidak valid → skip artikel
+                self._log(f"[SKIP] Format tanggal tidak valid: {tanggal_str}")
+                return
+
+            # Ambil rentang tanggal dari GUI
+            date_from = self.date_from.date().toPyDate()
+            date_to   = self.date_to.date().toPyDate()
+
+            # Jika artikel di luar rentang → skip
+            if not (date_from <= article_date <= date_to):
+                self._log(f"[SKIP] Artikel di luar rentang: {tanggal_str}")
+                return
+
+        # ==============================
+        # TAMPILKAN ARTIKEL DI TABEL
+        # ==============================
         row = self.table.rowCount()
         self.table.insertRow(row)
 
-        judul       = data.get("judul",   "-")
-        tanggal     = data.get("tanggal", "-")
-        link        = data.get("link",    "-")
-        isi         = data.get("isi",     "")
+        judul       = data.get("judul", "-")
+        tanggal     = tanggal_str or "-"
+        link        = data.get("link", "-")
+        isi         = data.get("isi", "")
         isi_singkat = isi[:120] + ("..." if len(isi) > 120 else "")
 
         self.table.setItem(row, 0, QTableWidgetItem(judul))
@@ -515,12 +544,14 @@ class NewsScraperApp(QMainWindow):
         self.table.setItem(row, 2, QTableWidgetItem(link))
         self.table.setItem(row, 3, QTableWidgetItem(isi_singkat))
 
+        # Warnai kolom link
         self.table.item(row, 2).setForeground(QColor("#63b3ed"))
 
+        # Update count & scroll ke bawah
         self.row_count = row + 1
         self.lbl_count.setText(f"{self.row_count} artikel ditemukan")
         self.table.scrollToBottom()
-
+        
     @pyqtSlot(int)
     def _on_progress(self, value: int):
         self.progress_bar.setValue(value)
@@ -546,34 +577,44 @@ class NewsScraperApp(QMainWindow):
         self.status_bar.showMessage("Tabel dibersihkan.")
 
     def export_csv(self):
-        if self.table.rowCount() == 0:
-            QMessageBox.information(self, "Tidak Ada Data",
-                                    "Belum ada data untuk diekspor.")
-            return
+
+        row_count = self.table.rowCount()
+        data = []
+
+        for row in range(row_count):
+
+            judul_item = self.table.item(row, 0)
+            tanggal_item = self.table.item(row, 1)
+            link_item = self.table.item(row, 2)
+            isi_item = self.table.item(row, 3)
+
+            judul = judul_item.text() if judul_item else ""
+            tanggal = tanggal_item.text() if tanggal_item else ""
+            link = link_item.text() if link_item else ""
+            isi = isi_item.text() if isi_item else ""
+
+            data.append([judul, tanggal, link, isi])
+
+        import pandas as pd
+
+        df = pd.DataFrame(data, columns=[
+            "Judul",
+            "Tanggal",
+            "Link",
+            "Isi"
+        ])
 
         path, _ = QFileDialog.getSaveFileName(
-            self, "Simpan CSV", "hasil_berita.csv",
-            "CSV Files (*.csv);;All Files (*)"
+            self,
+            "Simpan CSV",
+            "",
+            "CSV Files (*.csv)"
         )
-        if not path:
-            return
 
-        import csv
-        with open(path, 'w', newline='', encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerow(["Judul", "Tanggal", "Link", "Isi Singkat"])
-            for r in range(self.table.rowCount()):
-                row_data = [
-                    self.table.item(r, c).text()
-                    for c in range(self.table.columnCount())
-                ]
-                writer.writerow(row_data)
-
-        self._log(f"[EXPORT] Data berhasil disimpan ke: {path}")
-        self.status_bar.showMessage(f"Ekspor selesai: {path}")
-        QMessageBox.information(self, "Ekspor Berhasil",
-                                f"Data berhasil disimpan ke:\n{path}")
-
+        if path:
+            df.to_csv(path, index=False)
+            self._log("[EXPORT] Data berhasil disimpan")
+            self.status_bar.showMessage("Export CSV berhasil")
 
 # =============================================================
 #  ENTRY POINT
