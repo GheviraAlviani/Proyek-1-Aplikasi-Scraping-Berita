@@ -4,7 +4,7 @@ PyQt5 Frontend
 """
 
 import sys
-from scraper import scrape_detik 
+from scraper import scrape
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QVBoxLayout, QHBoxLayout, QLabel,
