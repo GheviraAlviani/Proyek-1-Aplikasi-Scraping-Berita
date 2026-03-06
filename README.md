@@ -84,7 +84,7 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ## 🖼️ Tampilan Aplikasi
 
 ### Tampilan GUI
-![GUI](screenshots/ui_awall.png)
+![GUI](screenshots/ui_awal.png)
 ### Proses Scraping
 ![GUI](screenshots/proses_scraping.png)
 ### Hasil Scraping
