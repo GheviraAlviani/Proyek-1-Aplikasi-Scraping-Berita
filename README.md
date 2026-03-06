@@ -41,7 +41,47 @@ portal-berita-aggregator/
 ├── .gitignore
 │
 └── screenshots/ # Folder dokumentasi tampilan aplikasi GUI
-## 🖼️ Preview Tampilan
+
+---
+
+## ⚙️ Instalasi
+
+1. Clone repository ini
+git clone https://github.com/GheviraAlviani/tugas-web-scraping-gui.git
+
+2. Masuk ke folder project
+
+3. Install dependencies
+pip install -r requirements.txt
+
+4. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
+
+Download ChromeDriver:
+https://chromedriver.chromium.org/downloads
+
+---
+
+## ▶️ Cara Menjalankan Program
+
+Jalankan file berikut:
+python main.py
+
+Setelah itu GUI aplikasi akan muncul dan siap digunakan.
+
+---
+
+## 📊 Cara Menggunakan Aplikasi
+
+1. Masukkan **URL portal berita**
+2. Tentukan **jumlah berita yang ingin diambil**
+3. (Opsional) pilih **rentang tanggal**
+4. Klik tombol **Start Scraping**
+5. Hasil berita akan muncul di tabel
+6. Klik **Export CSV** untuk menyimpan hasil
+
+---
+
+## 🖼️ Tampilan Aplikasi
 
 ### Tampilan GUI
 ![GUI](screenshots/ui_awal.png)
@@ -49,7 +89,4 @@ portal-berita-aggregator/
 ![GUI](screenshots/proses_scraping.png)
 ### Hasil Scraping
 ![Hasil](screenshots/hasil_tabel.png)
-
-
----
 
