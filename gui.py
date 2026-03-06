@@ -4,7 +4,6 @@ PyQt5 Frontend
 """
 
 import sys
-from scraper import scrape
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QVBoxLayout, QHBoxLayout, QLabel,
@@ -40,36 +39,7 @@ class ScraperWorker(QThread):
         self._running = False
 
     def run(self):
-    self.log_message.emit("[INFO] Worker thread dimulai.")
-    self.log_message.emit(f"[INFO] Target URL : {self.url}")
-
-    count = 0
-
-    def handle_article(data):
-        nonlocal count
-
-        if self.limit and count >= self.limit:
-            return
-
-        self.article_found.emit(data)
-        count += 1
-
-        progress = int((count / (self.limit or 20)) * 100)
-        self.progress.emit(progress)
-
-    try:
-        from scraper import scrape
-        scrape(self.url, callback=handle_article, limit=self.limit)
-
-        self.log_message.emit(
-            f"[DONE] Selesai. Total {count} artikel ditemukan."
-        )
-
-    except Exception as e:
-        self.log_message.emit(f"[ERROR] {str(e)}")
-
-    self.finished.emit()
-
+        pass
 
 # =============================================================
 #  MAIN WINDOW
@@ -639,12 +609,3 @@ class NewsScraperApp(QMainWindow):
             self._log("[EXPORT] Data berhasil disimpan")
             self.status_bar.showMessage("Export CSV berhasil")
 
-# =============================================================
-#  ENTRY POINT
-# =============================================================
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    app.setStyle("Fusion")
-    window = NewsScraperApp()
-    window.show()
-    sys.exit(app.exec_())

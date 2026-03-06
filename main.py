@@ -1,47 +1,57 @@
-from gui_d3 import ScraperWorker  # import ScraperWorker dari file GUI
-from PyQt5.QtWidgets import QTableWidgetItem
-from PyQt5.QtGui import QColor
+import sys
+from PyQt5.QtWidgets import QApplication
+import gui            
+from scraper import scrape  
 
-def mulai_scraping(self):
-    url_input = self.input_url.text().strip()  # Ambil URL dari input user
-    limit_val = self.limit_spin.value()        # Ambil limit dari GUI
-    date_from = self.date_from.date().toPyDate() if self.date_filter_chk.isChecked() else None
-    date_to   = self.date_to.date().toPyDate()   if self.date_filter_chk.isChecked() else None
-
-    # 1. Buat instance ScraperWorker
-    self.thread = ScraperWorker(url=url_input, date_from=date_from, date_to=date_to, limit=limit_val)
-
-    # 2. Hubungkan Signal (Kurir) ke Slot (Fungsi Penerima di GUI)
-    self.thread.article_found.connect(self.tambah_baris_tabel)
-    self.thread.progress.connect(self.update_progress_bar)
-    self.thread.log_message.connect(self.tampilkan_log)  # ini bisa untuk error/log
-    self.thread.finished.connect(self.scraping_selesai)
+# =================================================================
+# Fungsi Jembatan & Anti-Freeze
+# =================================================================
+def logika_thread_zahra(self):
+    self.log_message.emit("[INFO] Menjalankan robot Selenium...")
+    
+    # Kurir penerima dari scraper.py
+    def on_data_diterima(data_dari_scraper):
+        if not self._running:
+            return False # Suruh scraper berhenti
         
-    # 3. Nyalakan Thread (Ini akan memanggil fungsi run() di latar belakang)
-    self.thread.start()
+        # Samakan format kunci dictionary
+        data_gui = {
+            'judul': data_dari_scraper.get('judul', '-'),
+            'tanggal': data_dari_scraper.get('tanggal', '-'),
+            'link': data_dari_scraper.get('url', '-'), 
+            'isi': data_dari_scraper.get('isi', '-')
+        }
+        
+        # Lempar data ke Tabel GUI
+        self.article_found.emit(data_gui)
+        return True 
 
-# --- FUNGSI SLOT PENERIMA ---
-def tambah_baris_tabel(self, data):
-    row = self.table.rowCount()
-    self.table.insertRow(row)
+    # Jalankan Selenium
+    try:
+        scrape(url_utama=self.url, callback=on_data_diterima, limit=self.limit)
+        
+        if self._running:
+            self.log_message.emit("[INFO] Scraping selesai dengan normal.")
+        else:
+            self.log_message.emit("[WARNING] Scraping dihentikan paksa.")
+            
+    except Exception as e:
+        self.log_message.emit(f"[ERROR] Terjadi kesalahan: {e}")
 
-    self.table.setItem(row, 0, QTableWidgetItem(data.get("judul", "-")))
-    self.table.setItem(row, 1, QTableWidgetItem(data.get("tanggal", "-")))
-    self.table.setItem(row, 2, QTableWidgetItem(data.get("url", "-")))
+    self.finished.emit()
+
+# =================================================================
+# INJEKSI KODE 
+# =================================================================
+gui.ScraperWorker.run = logika_thread_zahra
+
+# =================================================================
+# SAKLAR UTAMA APLIKASI
+# =================================================================
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    app.setStyle("Fusion")
     
-    isi = data.get("isi", "")
-    isi_singkat = isi[:120] + ("..." if len(isi) > 120 else "")
-    self.table.setItem(row, 3, QTableWidgetItem(isi_singkat))
-    
-    self.table.item(row, 2).setForeground(QColor("#63b3ed"))
-
-    self.row_count += 1
-    self.lbl_count.setText(f"{self.row_count} artikel ditemukan")
-    self.table.scrollToBottom()
-
-def update_progress_bar(self, nilai):
-    self.progress_bar.setValue(nilai)
-
-def hentikan_scraping(self):
-    if hasattr(self, 'thread'):
-        self.thread.stop() # Panggil fungsi stop di dalam thread
+    window = gui.NewsScraperApp()
+    window.show()
+    sys.exit(app.exec_())
