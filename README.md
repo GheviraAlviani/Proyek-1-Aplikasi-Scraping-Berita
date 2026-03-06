@@ -92,7 +92,12 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ### Tampilan GUI
 ![GUI](screenshots/ui_awal.png)
 ### Proses Scraping
-![GUI](screenshots/proses_scraping.png)
+##1
+![GUI](screenshots/proses1.png)
+##2
+![GUI](screenshots/proses2.png)
+##3
+![GUI](screenshots/proses3.png)
 ### Hasil Scraping
 ![Hasil](screenshots/hasil_tabel.png)
 
