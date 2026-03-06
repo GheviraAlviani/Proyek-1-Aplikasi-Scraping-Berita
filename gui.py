@@ -40,27 +40,28 @@ class ScraperWorker(QThread):
         self._running = False
 
     def run(self):
-        self.log_message.emit("[INFO] Worker thread dimulai.")
-        self.log_message.emit(f"[INFO] Target URL : {self.url}")
-        
-        count = 0
+    self.log_message.emit("[INFO] Worker thread dimulai.")
+    self.log_message.emit(f"[INFO] Target URL : {self.url}")
 
-        def handle_article(data):
+    count = 0
+
+    def handle_article(data):
         nonlocal count
 
-            if self.limit and count >= self.limit:
+        if self.limit and count >= self.limit:
             return
 
-            self.article_found.emit(data)
-            count += 1
+        self.article_found.emit(data)
+        count += 1
 
-            progress = int((count / (self.limit or 20)) * 100)
-            self.progress.emit(progress)
+        progress = int((count / (self.limit or 20)) * 100)
+        self.progress.emit(progress)
 
-        try:
-            scrape(self.url, callback=handle_article, limit=self.limit)
+    try:
+        from scraper import scrape
+        scrape(self.url, callback=handle_article, limit=self.limit)
 
-            self.log_message.emit(
+        self.log_message.emit(
             f"[DONE] Selesai. Total {count} artikel ditemukan."
         )
 
