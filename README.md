@@ -100,6 +100,8 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ![GUI](screenshots/proses3.png)
 ### Hasil Scraping
 ![Hasil](screenshots/hasil.png)
+### Hasil Export CSV
+![CSV](screenshots/hasil_csv.png)
 
 ---
 ## 📄 Dokumentasi Arsitektur
