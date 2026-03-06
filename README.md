@@ -32,27 +32,27 @@ Aplikasi ini dibuat menggunakan beberapa library Python:
 
 ## 📂 Struktur Project
 
+```
 portal-berita-aggregator/
 │
-├── main.py # File utama untuk menjalankan aplikasi
-├── gui.py # Implementasi tampilan GUI
-├── scraper.py # Logika scraping berita
-├── requirements.txt # Daftar library yang dibutuhkan
+├── main.py           # File utama untuk menjalankan aplikasi
+├── gui.py            # Implementasi tampilan GUI
+├── scraper.py        # Logika scraping berita
+├── requirements.txt  # Daftar library yang dibutuhkan
 ├── .gitignore
 │
-└── screenshots/ # Folder dokumentasi tampilan aplikasi GUI
-
----
+└── screenshots/      # Folder dokumentasi tampilan aplikasi GUI
+```
 
 ## ⚙️ Instalasi
 
-1. Clone repository ini
+1. Clone repository ini →
 git clone https://github.com/GheviraAlviani/Proyek-1-Aplikasi-Scraping-Berita.git
 
-2. Masuk ke folder project
+2. Masuk ke folder project →
 cd Proyek-1-Aplikasi-Scraping-Berita
 
-4. Install dependencies
+4. Install dependencies →
 pip install -r requirements.txt
 
 5. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
