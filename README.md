@@ -33,7 +33,7 @@ Aplikasi ini dibuat menggunakan beberapa library Python:
 ## 📂 Struktur Project
 
 ```
-portal-berita-aggregator/
+Proyek-1-Aplikasi-Scraping-Berita/
 │
 ├── main.py           # File utama untuk menjalankan aplikasi
 ├── gui.py            # Implementasi tampilan GUI
