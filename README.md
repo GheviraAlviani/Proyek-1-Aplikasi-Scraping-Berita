@@ -43,7 +43,8 @@ Proyek-1-Aplikasi-Scraping-Berita/
 ├── screenshots/      # Folder dokumentasi tampilan aplikasi GUI
 │    ├── tampilan-awal.png
 │    ├── proses-scraping.png
-│    └── hasil-scraping.png
+│    ├── hasil-scraping.png 
+│    └── hasil-export-csv.png
 │   
 └── docs/             # Folder dokumentasi tampilan aplikasi GUI
      └── arsitektur-dan-alur-scraping.pdf
