@@ -40,8 +40,13 @@ portal-berita-aggregator/
 ├── scraper.py        # Logika scraping berita
 ├── requirements.txt  # Daftar library yang dibutuhkan
 ├── .gitignore
-│
-└── screenshots/      # Folder dokumentasi tampilan aplikasi GUI
+├── screenshots/      # Folder dokumentasi tampilan aplikasi GUI
+│    ├── tampilan-awal.png
+│    ├── proses-scraping.png
+│    └── hasil-scraping.png
+│   
+└── docs/             # Folder dokumentasi tampilan aplikasi GUI
+     └── arsitektur-dan-alur-scraping.pdf
 ```
 
 ## ⚙️ Instalasi
@@ -92,6 +97,11 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ![Hasil](screenshots/hasil_tabel.png)
 
 ---
+## 📄 Dokumentasi Arsitektur
+
+Penjelasan arsitektur sistem dan alur scraping dapat dilihat pada dokumen berikut:
+
+📄 [Arsitektur dan Alur Scraping](docs/arsitektur-dan-alur-scraping.pdf)
 
 ## 📌 Catatan
 
