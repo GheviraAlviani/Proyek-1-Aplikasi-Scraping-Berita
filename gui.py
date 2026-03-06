@@ -633,12 +633,3 @@ class NewsScraperApp(QMainWindow):
             self._log("[EXPORT] Data berhasil disimpan")
             self.status_bar.showMessage("Export CSV berhasil")
 
-# =============================================================
-#  ENTRY POINT
-# =============================================================
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    app.setStyle("Fusion")
-    window = NewsScraperApp()
-    window.show()
-    sys.exit(app.exec_())

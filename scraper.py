@@ -83,8 +83,11 @@ def scrape(url_utama, callback=None, limit=0):
 
                 data = {"judul": judul, "tanggal": tanggal, "isi": isi, "url": url}
                 if callback:
-                    callback(data)
-
+                    lanjut = callback(data)
+                    if lanjut is False:
+                        driver.quit()
+                        return
+            
                 count += 1 #Tambah counter
                 print(f"[{count}] judul   : {judul[:50]}...")
                 print(f"[{count}] tanggal : {tanggal}")
@@ -116,5 +119,4 @@ def scrape(url_utama, callback=None, limit=0):
 
     driver.quit()
 
-if __name__ == "__main__":
-    scrape("https://news.detik.com/indeks")
+
