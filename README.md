@@ -99,7 +99,7 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ##3
 ![GUI](screenshots/proses3.png)
 ### Hasil Scraping
-![Hasil](screenshots/hasil_tabel.png)
+![Hasil](screenshots/hasil.png)
 
 ---
 ## 📄 Dokumentasi Arsitektur
