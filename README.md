@@ -32,3 +32,16 @@ Aplikasi ini dibuat menggunakan beberapa library Python:
 
 ## 📂 Struktur Project
 
+portal-berita-aggregator
+│
+├── main.py # File utama untuk menjalankan aplikasi
+├── gui.py # Implementasi tampilan GUI
+├── scraper.py # Logika scraping berita
+├── requirements.txt # Daftar library yang dibutuhkan
+├── .gitignore
+│
+└── screenshots # Folder dokumentasi tampilan aplikasi
+![GUI](screenshots/gui.png)
+
+---
+
