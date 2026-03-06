@@ -30,7 +30,7 @@ def ambil_tanggal(driver):
                 return teks
     return ""
 
-def scrape(url_utama, callback=None):
+def scrape(url_utama, callback=None, limit=0):
     driver = webdriver.Chrome()
     driver.set_page_load_timeout(30)
     
@@ -59,8 +59,11 @@ def scrape(url_utama, callback=None):
                 news_url_set.add(news_url)
 
         news_url_list = list(news_url_set)
+        count = 0 #Counter artikel
 
         for url in news_url_list:
+            if limit > 0 and count >= limit:
+                break #Sudah mencapai limit
             try:
                 try:
                     driver.get(url)
@@ -82,9 +85,10 @@ def scrape(url_utama, callback=None):
                 if callback:
                     callback(data)
 
-                print(f"judul   : {judul}")
-                print(f"tanggal : {tanggal}")
-                print(f"isi     : {isi[:100]}")
+                count += 1 #Tambah counter
+                print(f"[{count}] judul   : {judul[:50]}...")
+                print(f"[{count}] tanggal : {tanggal}")
+                print(f"[{count}] isi     : {isi[:100]}...")
 
             except Exception as e:
                 print(f"Gagal: {e.__class__.__name__}")
