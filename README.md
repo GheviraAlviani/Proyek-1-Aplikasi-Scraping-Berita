@@ -47,14 +47,15 @@ portal-berita-aggregator/
 ## ⚙️ Instalasi
 
 1. Clone repository ini
-git clone https://github.com/GheviraAlviani/tugas-web-scraping-gui.git
+git clone https://github.com/GheviraAlviani/Proyek-1-Aplikasi-Scraping-Berita.git
 
 2. Masuk ke folder project
+cd Proyek-1-Aplikasi-Scraping-Berita
 
-3. Install dependencies
+4. Install dependencies
 pip install -r requirements.txt
 
-4. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
+5. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
 
 Download ChromeDriver:
 https://chromedriver.chromium.org/downloads
@@ -96,7 +97,7 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 
 Aplikasi ini dibuat untuk memenuhi tugas mata kuliah:
 
-**Proyek Pengembangan Perangkat Lunak**
+**Proyek 1 Pengembangan Perangkat Lunak**
 
 ---
 
@@ -109,4 +110,3 @@ Project ini dibuat oleh:
 - IRHAM FATHIFAZA (251524104)
 - KAYLA MUTIARA BUDIMAN (251524108)
 - ZAHRA AZKIYA RAHMANI (251524124)
-
