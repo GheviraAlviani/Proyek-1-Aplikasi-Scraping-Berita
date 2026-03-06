@@ -42,22 +42,26 @@ class ScraperWorker(QThread):
     def run(self):
         self.log_message.emit("[INFO] Worker thread dimulai.")
         self.log_message.emit(f"[INFO] Target URL : {self.url}")
-        try:
-        results = scrape_detik(self.url)  
+         count = 0
 
-        count = 0
-        for item in results:
+    def handle_article(data):
+        nonlocal count
 
-            if self.limit and count >= self.limit:
-                break
+        if self.limit and count >= self.limit:
+            return
 
-            self.article_found.emit(item)  
-            count += 1
+        self.article_found.emit(data)
+        count += 1
 
-            progress = int((count / (self.limit or 20)) * 100)
-            self.progress.emit(progress)
+        progress = int((count / (self.limit or 20)) * 100)
+        self.progress.emit(progress)
 
-        self.log_message.emit(f"[DONE] Selesai. Total {count} artikel ditemukan.")
+    try:
+        scrape(self.url, callback=handle_article, limit=self.limit)
+
+        self.log_message.emit(
+            f"[DONE] Selesai. Total {count} artikel ditemukan."
+        )
 
     except Exception as e:
         self.log_message.emit(f"[ERROR] {str(e)}")
@@ -552,7 +556,7 @@ class NewsScraperApp(QMainWindow):
 
         judul       = data.get("judul", "-")
         tanggal     = tanggal_str or "-"
-        link        = data.get("link", "-")
+        link        = data.get("url", "-")
         isi         = data.get("isi", "")
         isi_singkat = isi[:120] + ("..." if len(isi) > 120 else "")
 
