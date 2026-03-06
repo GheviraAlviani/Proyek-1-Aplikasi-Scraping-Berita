@@ -4,6 +4,7 @@ PyQt5 Frontend
 """
 
 import sys
+from scraper import scrape_detik 
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QVBoxLayout, QHBoxLayout, QLabel,
@@ -41,11 +42,27 @@ class ScraperWorker(QThread):
     def run(self):
         self.log_message.emit("[INFO] Worker thread dimulai.")
         self.log_message.emit(f"[INFO] Target URL : {self.url}")
-        if self.date_from:
-            self.log_message.emit(f"[INFO] Filter: {self.date_from} s/d {self.date_to}")
-        if self.limit:
-            self.log_message.emit(f"[INFO] Limit: {self.limit} berita")
-        self.finished.emit()
+        try:
+        results = scrape_detik(self.url)  
+
+        count = 0
+        for item in results:
+
+            if self.limit and count >= self.limit:
+                break
+
+            self.article_found.emit(item)  
+            count += 1
+
+            progress = int((count / (self.limit or 20)) * 100)
+            self.progress.emit(progress)
+
+        self.log_message.emit(f"[DONE] Selesai. Total {count} artikel ditemukan.")
+
+    except Exception as e:
+        self.log_message.emit(f"[ERROR] {str(e)}")
+
+    self.finished.emit()
 
 
 # =============================================================
