@@ -90,3 +90,23 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ### Hasil Scraping
 ![Hasil](screenshots/hasil_tabel.png)
 
+---
+
+## 📌 Catatan
+
+Aplikasi ini dibuat untuk memenuhi tugas mata kuliah:
+
+**Proyek Pengembangan Perangkat Lunak**
+
+---
+
+## 👩‍💻 Author
+
+Project ini dibuat oleh:
+
+- ABDILLAH MAHFUDIN AL KHAYIS (251524094)
+- GHEVIRA ALVIANI KAMILA (251524103)
+- IRHAM FATHIFAZA (251524104)
+- KAYLA MUTIARA BUDIMAN (251524108)
+- ZAHRA AZKIYA RAHMANI (251524124)
+
