@@ -43,8 +43,7 @@ Proyek-1-Aplikasi-Scraping-Berita/
 ├── screenshots/      # Folder dokumentasi tampilan aplikasi GUI
 │    ├── tampilan-awal.png
 │    ├── proses-scraping.png
-│    ├── hasil-scraping.png 
-│    └── hasil-export-csv.png
+│    └── hasil-scraping.png
 │   
 └── docs/             # Folder dokumentasi tampilan aplikasi GUI
      └── arsitektur-dan-alur-scraping.pdf
@@ -63,8 +62,8 @@ pip install -r requirements.txt
 
 4. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
 
-Download ChromeDriver:
-https://chromedriver.chromium.org/downloads
+  Download ChromeDriver:
+  https://chromedriver.chromium.org/downloads
 
 ---
 
@@ -103,8 +102,6 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ![GUI](screenshots/proses3.png)
 ### Hasil Scraping
 ![Hasil](screenshots/hasil.png)
-### Hasil Export CSV
-![CSV](screenshots/hasil_csv.png)
 
 ---
 ## 📄 Dokumentasi Arsitektur
