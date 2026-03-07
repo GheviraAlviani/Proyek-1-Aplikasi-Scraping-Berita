@@ -43,8 +43,7 @@ Proyek-1-Aplikasi-Scraping-Berita/
 ├── screenshots/      # Folder dokumentasi tampilan aplikasi GUI
 │    ├── tampilan-awal.png
 │    ├── proses-scraping.png
-│    ├── hasil-scraping.png 
-│    └── hasil-export-csv.png
+│    └── hasil-scraping.png
 │   
 └── docs/             # Folder dokumentasi tampilan aplikasi GUI
      └── arsitektur-dan-alur-scraping.pdf
@@ -81,10 +80,12 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 
 1. Masukkan **URL portal berita**
 2. Tentukan **jumlah berita yang ingin diambil**
-3. (Opsional) pilih **rentang tanggal**
-4. Klik tombol **Start Scraping**
+3. (Opsional) Centang Filter Tanggal dan pilih **rentang tanggal**  berita yang diinginkan
+4. Klik tombol **Mulai Scraping**
+5. (Opsional) Klik tombol **Stop** jika ingin menghentikan proses scraping di tengah jalan.
 5. Hasil berita akan muncul di tabel
-6. Klik **Export CSV** untuk menyimpan hasil
+6. Klik **Export CSV** untuk menyimpan hasil scraping
+7. (Opsional) Klik **Bersihkan Tabel** untuk mengosongkan layar sebelum memulai pencarian baru
 
 ---
 
@@ -101,8 +102,6 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ![GUI](screenshots/proses3.png)
 ### Hasil Scraping
 ![Hasil](screenshots/hasil.png)
-### Hasil Export CSV
-![CSV](screenshots/hasil_csv.png)
 
 ---
 ## 📄 Dokumentasi Arsitektur
