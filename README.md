@@ -79,13 +79,13 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ## 📊 Cara Menggunakan Aplikasi
 
 1. Masukkan **URL portal berita**
-2. Tentukan **jumlah berita yang ingin diambil**
+2. Tentukan *jumlah berita yang ingin diambil*
 3. (Opsional) Centang **Filter Tanggal** dan pilih *rentang tanggal*  berita yang diinginkan
 4. Klik tombol *Mulai Scraping*
-5. (Opsional) Klik tombol *Stop* jika ingin menghentikan proses scraping di tengah jalan.
+5. (Opsional) Klik tombol **Stop** jika ingin menghentikan proses scraping di tengah jalan.
 6. Hasil berita akan muncul di tabel
-7. Klik *Export CSV* untuk menyimpan hasil scraping
-8. (Opsional) Klik *Bersihkan Tabel* untuk mengosongkan layar sebelum memulai pencarian baru
+7. Klik **Export CSV** untuk menyimpan hasil scraping
+8. (Opsional) Klik **Bersihkan Tabel** untuk mengosongkan layar sebelum memulai pencarian baru
 
 ---
 
