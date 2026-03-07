@@ -58,10 +58,10 @@ git clone https://github.com/GheviraAlviani/Proyek-1-Aplikasi-Scraping-Berita.gi
 2. Masuk ke folder project →
 cd Proyek-1-Aplikasi-Scraping-Berita
 
-4. Install dependencies →
+3. Install dependencies →
 pip install -r requirements.txt
 
-5. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
+4. Pastikan **Google Chrome** dan **ChromeDriver** sudah terinstall.
 
 Download ChromeDriver:
 https://chromedriver.chromium.org/downloads
@@ -81,10 +81,12 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 
 1. Masukkan **URL portal berita**
 2. Tentukan **jumlah berita yang ingin diambil**
-3. (Opsional) pilih **rentang tanggal**
-4. Klik tombol **Start Scraping**
-5. Hasil berita akan muncul di tabel
-6. Klik **Export CSV** untuk menyimpan hasil
+3. (Opsional) Centang **Filter Tanggal** dan pilih *rentang tanggal*  berita yang diinginkan
+4. Klik tombol *Mulai Scraping*
+5. (Opsional) Klik tombol *Stop* jika ingin menghentikan proses scraping di tengah jalan.
+6. Hasil berita akan muncul di tabel
+7. Klik *Export CSV* untuk menyimpan hasil scraping
+8. (Opsional) Klik *Bersihkan Tabel* untuk mengosongkan layar sebelum memulai pencarian baru
 
 ---
 
