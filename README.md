@@ -102,7 +102,8 @@ Setelah itu GUI aplikasi akan muncul dan siap digunakan.
 ![GUI](screenshots/proses3.png)
 ### Hasil Scraping
 ![Hasil](screenshots/hasil.png)
-
+### Hasil Scarping CSV (via Excel)
+![Hasi](screenshots/hasil_csv.png) 
 ---
 ## 📄 Dokumentasi Arsitektur
 
